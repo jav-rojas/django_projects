@@ -1,0 +1,38 @@
+{% extends "base_bootstrap.html" %}
+
+{% block content %}
+  <h1>Cat List</h1>
+  <!-- Si es que hay autos (esta variable viene del ctx) -->
+  {% if cat_list %}
+  <ul>
+    <!-- Loop en elementos de la lista -->
+    {% for cat in cat_list %}
+      <li>
+          <!-- Recupera el nombre del modelo, y el fabricante. Agrega links para borrar y actualizar-->
+          <!-- Notar que 'autos:auto_update' es la URL de urls.py que lleva por nombre 'auto_update' -->
+          {{ cat.nickname }} ({{ cat.breed }})
+          (<a href="{% url 'cats:cat_update' cat.id %}">Update</a> |
+          <a href="{% url 'cats:cat_delete' cat.id %}">Delete</a>) <br/>
+          {{ cat.foods }} ({{ cat.weight }} kilos)
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <!-- Si no hay autos... -->
+    <p>There are no cats in the library.</p>
+  {% endif %}
+  <p>
+    <!-- Si hay algún fabricante, permite agregar un auto -->
+    {% if breed_count > 0 %}
+      <a href="{% url 'cats:cat_create' %}">Add a cat</a>
+    <!-- De lo contrario, no puede agregar... -->
+    {% else %}
+      Please add a breed before you add a cat.
+    {% endif %}
+  </p>
+  <p>
+  <!-- Agrega un párrafo en que se muestra link para ir a lista de fabricantes, o ir a crear uno. -->
+  <a href="{% url 'cats:breed_list' %}">View breeds</a> ({{ breed_count }}) |
+    <a href="{% url 'cats:breed_create' %}">Add a breed</a>
+  </p>
+{% endblock %}

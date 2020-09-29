@@ -1,0 +1,20 @@
+<!-- question es la clase que viene desde views.py, representa la fila
+recuperada desde SQL que cumple pk=question_id. Se puede acceder a cada
+uno de los valores de su columna llamandolo a modo de objeto, es decir,
+question.nombre_columna -->
+
+<h1>{{question.question_text}}</h1>
+
+{% if error_essage %}<p><strong>{{error_message}}
+</strong></p>
+{% endif %}
+
+<form action="{% url 'polls:vote' question.id %}" method="post">
+    {% csrf_token %}
+    {% for choice in question.choice_set.all %}
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}"
+        value = "{{choice.id}}">
+        <label for="choice{{ forloop.counter}}">{{ choice.choice_text }}</label><br>
+    {% endfor %}
+    <input type="submit" value="Vote">
+    </form>

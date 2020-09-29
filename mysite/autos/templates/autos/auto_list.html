@@ -1,0 +1,38 @@
+{% extends "base_bootstrap.html" %}
+
+{% block content %}
+  <h1>Auto List</h1>
+  <!-- Si es que hay autos (esta variable viene del ctx) -->
+  {% if auto_list %}
+  <ul>
+    <!-- Loop en elementos de la lista -->
+    {% for auto in auto_list %}
+      <li>
+          <!-- Recupera el nombre del modelo, y el fabricante. Agrega links para borrar y actualizar-->
+          <!-- Notar que 'autos:auto_update' es la URL de urls.py que lleva por nombre 'auto_update' -->
+          {{ auto.nickname }} ({{ auto.make }})
+          (<a href="{% url 'autos:auto_update' auto.id %}">Update</a> |
+          <a href="{% url 'autos:auto_delete' auto.id %}">Delete</a>) <br/>
+          {{ auto.comments }} ({{ auto.mileage }} miles)
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <!-- Si no hay autos... -->
+    <p>There are no autos in the library.</p>
+  {% endif %}
+  <p>
+    <!-- Si hay algún fabricante, permite agregar un auto -->
+    {% if make_count > 0 %}
+      <a href="{% url 'autos:auto_create' %}">Add an auto</a>
+    <!-- De lo contrario, no puede agregar... -->
+    {% else %}
+      Please add a make before you add an auto.
+    {% endif %}
+  </p>
+  <p>
+  <!-- Agrega un párrafo en que se muestra link para ir a lista de fabricantes, o ir a crear uno. -->
+  <a href="{% url 'autos:make_list' %}">View makes</a> ({{ make_count }}) |
+    <a href="{% url 'autos:make_create' %}">Add a make</a>
+  </p>
+{% endblock %}

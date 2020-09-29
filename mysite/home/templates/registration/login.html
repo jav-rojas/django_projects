@@ -1,0 +1,22 @@
+<!-- Extiende el código desde plantilla -->
+
+{% extends "base_bootstrap.html" %}
+
+<!-- Comienza el bloque de contenido -->
+{% block content %}
+
+<!-- Si el formulario tiene error, entonces muestra este mensaje -->
+{% if form.errors %}
+  <p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+<!-- Crear un formulario para el login. {% url 'login' %} toma la ruta de login (/login) -->
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+<!-- Inserta el formulario -->
+{{ form.as_p }}
+<!-- Botón -->
+<input type="submit" class="btn btn-primary" value="Login" />
+<input type="hidden" name="next" value="{{ next }}" />
+</form>
+{% endblock %}
