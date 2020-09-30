@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',  
     'cats.apps.CatsConfig',
     'autos.apps.AutosConfig',
-    'home.apps.HomeConfig',
     'hello.apps.HelloConfig',   
     'polls.apps.PollsConfig',
 ]
