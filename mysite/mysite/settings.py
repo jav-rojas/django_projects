@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'autos.apps.AutosConfig',
     'hello.apps.HelloConfig',   
     'polls.apps.PollsConfig',
+    'ads.apps.AdsConfig',
 ]
 
 # When we get to crispy forms :)
