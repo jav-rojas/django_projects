@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'hello.apps.HelloConfig',   
     'polls.apps.PollsConfig',
     'ads.apps.AdsConfig',
+    'unesco.apps.UnescoConfig',
 ]
 
 # When we get to crispy forms :)
