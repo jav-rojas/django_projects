@@ -1,5 +1,22 @@
 __pycache__
 *.swp
+
+# Base creada con python manage.py migrate
 *.sqlite3
+
+# Virtual Environment
 /django_projects_env
+
+# Archivo de configuración de clave-llave GitHub
 github_settings.py
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
