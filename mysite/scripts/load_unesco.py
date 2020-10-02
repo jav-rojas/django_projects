@@ -31,8 +31,6 @@ def run():
     # 10 - iso
 
     for row in reader:
-        print(row)
-
         category, created = Category.objects.get_or_create(name=row[7])
         iso, created = Iso.objects.get_or_create(name=row[10])
         region, created = Region.objects.get_or_create(name=row[9])
