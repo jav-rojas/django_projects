@@ -36,7 +36,7 @@ def run():
         category, created = Category.objects.get_or_create(name=row[7])
         iso, created = Iso.objects.get_or_create(name=row[10])
         region, created = Region.objects.get_or_create(name=row[9])
-        state, created = State.objects.get_or_create(name=row[8], region=region, iso=iso)
+        state, created = State.objects.get_or_create(name=row[8])
 
         # Para columnas que pueden ser vacías:
         # Año
@@ -50,4 +50,4 @@ def run():
         except:
             area_hectares=None
 
-        site, created = Site.objects.get_or_create(name=row[0], description=row[1], justification=row[2], year=year, longitude=row[4], latitude=row[5], area_hectares=area_hectares, category=category, state=state)
+        site, created = Site.objects.get_or_create(name=row[0], description=row[1], justification=row[2], year=year, longitude=row[4], latitude=row[5], area_hectares=area_hectares, category=category, state=state, region=region, iso=iso)
