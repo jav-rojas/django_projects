@@ -14,7 +14,7 @@ class Region(models.Model):
     def __str__(self):
         return self.name
 
-class States(models.Model):
+class State(models.Model):
     name = models.CharField(max_length = 200)
     region = models.ForeignKey('Region', on_delete=models.CASCADE, null=False)
     iso = models.ForeignKey('Iso', on_delete=models.CASCADE, null=False)
@@ -28,7 +28,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-class Sites(models.Model):
+class Site(models.Model):
     name = models.CharField(max_length=1000)
     description = models.CharField(max_length=1000)
     justification = models.CharField(max_length=1000)
@@ -37,7 +37,7 @@ class Sites(models.Model):
     latitude = models.FloatField()
     area_hectares = models.FloatField(null=True)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
-    state = models.ForeignKey('States', on_delete=models.CASCADE)
+    state = models.ForeignKey('State', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

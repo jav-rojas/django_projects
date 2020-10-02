@@ -4,15 +4,15 @@ import csv  # https://docs.python.org/3/library/csv.html
 # https://django-extensions.readthedocs.io/en/latest/runscript.html
 # python3 manage.py runscript many_load
 
-from unesco.models import Sites, States, Region, Iso, Category
+from unesco.models import Site, State, Region, Iso, Category
 
 def run():
     fhand = open('unesco/unesco.csv')
     reader = csv.reader(fhand)
     next(reader)  # Advance past the header
 
-    Sites.objects.all().delete()
-    States.objects.all().delete()
+    Site.objects.all().delete()
+    State.objects.all().delete()
     Region.objects.all().delete()
     Iso.objects.all().delete()
     Category.objects.all().delete()
@@ -36,7 +36,7 @@ def run():
         category, created = Category.objects.get_or_create(name=row[7])
         iso, created = Iso.objects.get_or_create(name=row[10])
         region, created = Region.objects.get_or_create(name=row[9])
-        states, created = States.objects.get_or_create(name=row[8], region=region, iso=iso)
+        state, created = State.objects.get_or_create(name=row[8], region=region, iso=iso)
 
         # Para columnas que pueden ser vacías:
         # Año
@@ -50,4 +50,4 @@ def run():
         except:
             area_hectares=None
 
-        sites, created = Sites.objects.get_or_create(name=row[0], description=row[1], justification=row[2], year=year, longitude=row[4], latitude=row[5], area_hectares=area_hectares, category=category, state=states)
+        site, created = Site.objects.get_or_create(name=row[0], description=row[1], justification=row[2], year=year, longitude=row[4], latitude=row[5], area_hectares=area_hectares, category=category, state=state)
