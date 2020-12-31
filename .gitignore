@@ -5,7 +5,7 @@ __pycache__
 *.sqlite3
 
 # Virtual Environment
-/django_projects_env
+/venv
 
 # Archivo de configuración de clave-llave GitHub
 github_settings.py
